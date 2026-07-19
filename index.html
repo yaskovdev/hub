@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' data:; style-src 'unsafe-inline'; script-src 'sha256-LKS5qxivkW6MDP7mTwHb2zoVxki3/Jq42HU8Td64Drc=' 'sha256-kEVdzLxCPchCd7WnF8klb21KMMPYl6yym/Pt56e/I1k='; base-uri 'none'" />
+  <title>Sergey Yaskov — Things I've Built</title>
+  <meta name="description" content="A small constellation of pet projects by Sergey Yaskov: a Haskell word game, real-time multiplayer toys, a URL shortener, and more." />
+
+  <!-- Open Graph / nice link previews when shared -->
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://yaskov.dev/" />
+  <meta property="og:title" content="Sergey Yaskov — Things I've Built" />
+  <meta property="og:description" content="A small constellation of pet projects: a Haskell word game, real-time multiplayer toys, a URL shortener, and more." />
+  <meta name="twitter:card" content="summary" />
+
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 16 16%22><text x=%221%22 y=%2214%22 font-size=%2214%22>🔗</text></svg>" />
+
+  <style>
+    :root{--bg:#f6f5f1;--surface:#ffffff;--border:#e6e3da;--text:#1c1c22;--head:#15151a;--muted:#6b6b73;--accent:#4f46e5;--badge-bg:#f1efe9;--badge-tx:#54545c;--faint:#c9c6bd;--hover-border:#d8d4c8;}
+    :root[data-theme="dark"]{--bg:#15161b;--surface:#1c1e25;--border:#2a2d36;--text:#e7e8ec;--head:#f2f3f6;--muted:#9498a3;--accent:#8ea2ff;--badge-bg:#23262e;--badge-tx:#c2c6d0;--faint:#3a3d46;--hover-border:#3a3f4b;}
+    *{box-sizing:border-box}html{scroll-behavior:smooth}
+    body{margin:0;background:var(--bg);color:var(--text);font-family:system-ui,-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;line-height:1.55;-webkit-font-smoothing:antialiased}
+    .wrap{max-width:940px;margin:0 auto;padding:72px 20px 48px}
+    header{margin-bottom:40px}
+    .eyebrow{font-size:.78rem;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin:0 0 12px}
+    h1{margin:0 0 14px;font-size:clamp(2rem,6vw,3rem);line-height:1.1;font-family:Georgia,"Times New Roman",serif;font-weight:700;color:var(--head)}
+    .lede{margin:0 0 18px;color:var(--muted);font-size:1.08rem;max-width:62ch}
+    .meta{display:flex;flex-wrap:wrap;gap:8px 18px;align-items:center;font-size:.94rem}
+    .meta a{color:var(--text);text-decoration:none;border-bottom:1px solid var(--border);padding-bottom:1px}
+    .meta a:hover{color:var(--accent);border-color:var(--accent)}
+    .meta .dot{color:var(--faint)}
+    .meta span{color:var(--muted)}
+    .grid{display:grid;gap:18px;grid-template-columns:repeat(auto-fill,minmax(280px,1fr))}
+    .card{display:flex;flex-direction:column;background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:20px;box-shadow:0 1px 2px rgba(20,20,30,.03);transition:transform .16s,box-shadow .16s,border-color .16s}
+    .card:hover{transform:translateY(-3px);box-shadow:0 14px 30px -16px rgba(20,20,40,.30);border-color:var(--hover-border)}
+    .card.soon{opacity:.72}
+    .card h2{margin:0 0 6px;font-size:1.15rem;font-weight:700;display:flex;align-items:center;gap:10px;color:var(--head)}
+    .card h2 .ico{font-size:1.3rem;line-height:1}
+    .card p{margin:0 0 14px;color:var(--muted);font-size:.95rem;flex:1}
+    .badges{display:flex;flex-wrap:wrap;gap:6px;margin:0 0 16px}
+    .badge{font-size:.72rem;color:var(--badge-tx);background:var(--badge-bg);border:1px solid var(--border);padding:2px 9px;border-radius:999px}
+    .actions{display:flex;gap:10px;align-items:center;margin-top:auto}
+    .btn{text-decoration:none;font-size:.9rem;font-weight:600;border-radius:9px;padding:8px 14px;border:1px solid transparent;transition:all .15s}
+    .btn.primary{background:transparent;border-color:transparent;color:var(--accent)}
+    .btn.primary:hover{background:color-mix(in srgb,var(--accent) 8%,transparent)}
+    .btn.ghost{color:var(--muted);background:transparent;border-color:transparent}
+    .btn.ghost:hover{color:var(--text)}
+    .btn[aria-disabled="true"]{color:var(--muted);border-color:transparent;background:transparent;opacity:.7;pointer-events:none}
+    .section-title{font-size:.78rem;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin:48px 0 14px}
+    .writing{display:flex;flex-direction:column}
+    .post{display:flex;align-items:baseline;gap:14px;padding:12px 14px;border:1px solid transparent;border-radius:10px;text-decoration:none;color:var(--text);transition:background .15s,border-color .15s}
+    .post:hover{background:var(--surface);border-color:var(--border)}
+    .post .yr{font-size:.8rem;color:var(--muted);min-width:3ch}
+    .post .ttl{font-size:.98rem}
+    .post .arrow{margin-left:auto;color:var(--muted)}
+    .more{display:inline-block;margin:12px 0 0 14px;color:var(--accent);text-decoration:none;font-size:.9rem}
+    .more:hover{text-decoration:underline}
+    footer{margin-top:48px;padding-top:20px;border-top:1px solid var(--border);color:var(--muted);font-size:.85rem;display:flex;flex-wrap:wrap;gap:6px 14px;justify-content:space-between}
+    footer a{color:var(--muted);text-decoration:none;border-bottom:1px solid var(--border)}
+    footer a:hover{color:var(--text)}
+    .theme-toggle{position:fixed;top:16px;right:16px;width:38px;height:38px;border-radius:999px;border:1px solid var(--border);background:var(--surface);color:var(--text);font-size:1rem;cursor:pointer;line-height:1;display:flex;align-items:center;justify-content:center;box-shadow:0 1px 2px rgba(20,20,30,.04)}
+    .theme-toggle:hover{border-color:var(--muted)}
+    @media (prefers-reduced-motion:reduce){*{transition:none!important}html{scroll-behavior:auto}}
+  </style>
+  <script>(function(){try{var t=localStorage.getItem('theme');if(t)document.documentElement.setAttribute('data-theme',t);}catch(e){}})();</script>
+</head>
+<body>
+  <main class="wrap">
+    <button id="themeBtn" class="theme-toggle" aria-label="Toggle light/dark theme" title="Toggle theme">☾</button>
+    <header>
+      <p class="eyebrow">yaskov.dev</p>
+      <h1>Sergey Yaskov</h1>
+      <p class="lede">Software engineer in Tallinn. Below is a small constellation of pet projects — real-time toys, a functional-programming word game, and useful little tools. Poke around; most of them are live.</p>
+      <nav class="meta">
+        <a href="https://cv.yaskovdev.com" target="_blank" rel="noopener">CV</a>
+        <span class="dot">·</span>
+        <a href="https://yaskovdev.com" target="_blank" rel="noopener">Blog</a>
+        <span class="dot">·</span>
+        <a href="https://github.com/yaskovdev" target="_blank" rel="noopener">GitHub</a>
+        <span class="dot">·</span>
+        <span>Tallinn, Estonia</span>
+      </nav>
+    </header>
+
+    <section class="grid">
+
+      <article class="card">
+        <h2><span class="ico">🧩</span> Blockhead (Балда)</h2>
+        <p>Real-time multiplayer word game. You grow words on a shared board against a friend or the computer. Functional back end for the fun of it.</p>
+        <div class="badges"><span class="badge">Haskell</span><span class="badge">React</span><span class="badge">WebSockets</span></div>
+        <div class="actions">
+          <a class="btn primary" href="https://blockhead.yaskovdev.com" target="_blank" rel="noopener">Play ↗</a>
+          <a class="btn ghost" href="https://github.com/motivepick/blockhead-game-haskell" target="_blank" rel="noopener">Code</a>
+        </div>
+      </article>
+
+      <article class="card">
+        <h2><span class="ico">🎯</span> Milestone</h2>
+        <p>A goal and milestone tracker to keep long-term projects moving. One product, four clients — web, iOS, Android, and a shared back end.</p>
+        <div class="badges"><span class="badge">Kotlin</span><span class="badge">React</span><span class="badge">Swift</span><span class="badge">Android</span></div>
+        <div class="actions">
+          <a class="btn primary" href="https://milestone.yaskovdev.com" target="_blank" rel="noopener">Open ↗</a>
+          <a class="btn ghost" href="https://github.com/motivepick/motive-web-app" target="_blank" rel="noopener">Code</a>
+        </div>
+      </article>
+
+      <article class="card">
+        <h2><span class="ico">➗</span> Math Game</h2>
+        <p>A fast real-time multiplayer arithmetic race in the browser (also on iOS and Android). Answer quicker than your opponent to win the round.</p>
+        <div class="badges"><span class="badge">Node.js</span><span class="badge">React</span><span class="badge">real-time</span></div>
+        <div class="actions">
+          <a class="btn primary" href="https://game.yaskovdev.com" target="_blank" rel="noopener">Play ↗</a>
+          <a class="btn ghost" href="https://github.com/yaskovdev/math-game-back-end" target="_blank" rel="noopener">Code</a>
+        </div>
+      </article>
+
+      <article class="card soon">
+        <h2><span class="ico">🔗</span> URL Shortener</h2>
+        <p>A distributed URL shortener built around a dedicated key-generation service — the classic system-design question, built for real. Currently being revamped.</p>
+        <div class="badges"><span class="badge">C#</span><span class="badge">TypeScript</span><span class="badge">system design</span></div>
+        <div class="actions">
+          <a class="btn primary" aria-disabled="true" href="#">Coming soon</a>
+          <a class="btn ghost" href="https://github.com/yaskovdev/UrlShorteningKeyGenerationService" target="_blank" rel="noopener">Code</a>
+        </div>
+      </article>
+
+      <article class="card">
+        <h2><span class="ico">🔥</span> Stationeers Combustion Fix</h2>
+        <p>A mod for the survival sim Stationeers that swaps the game's chemically wrong methane burn for the real reaction: CH₄ + 2 O₂ → CO₂ + 2 H₂O. Shipped on the Steam Workshop.</p>
+        <div class="badges"><span class="badge">C#</span><span class="badge">game mod</span></div>
+        <div class="actions">
+          <a class="btn primary" href="https://steamcommunity.com/sharedfiles/filedetails/?id=3724908136" target="_blank" rel="noopener">Steam Workshop ↗</a>
+          <a class="btn ghost" href="https://github.com/yaskovdev/StationeersCombustionFix" target="_blank" rel="noopener">Code</a>
+        </div>
+      </article>
+
+    </section>
+
+    <h2 class="section-title">Writing</h2>
+    <div class="writing">
+      <a class="post" href="https://yaskovdev.com/2024/11/29/intro-to-genetic-programming-can-evolution-write-computer-programs/" target="_blank" rel="noopener">
+        <span class="yr">2024</span><span class="ttl">Intro to Genetic Programming: Can Evolution Write Computer Programs?</span><span class="arrow">↗</span>
+      </a>
+      <a class="post" href="https://yaskovdev.com/2024/12/21/can-we-write-complex-programs-in-push/" target="_blank" rel="noopener">
+        <span class="yr">2024</span><span class="ttl">Can We Write Complex Programs in Push?</span><span class="arrow">↗</span>
+      </a>
+      <a class="post" href="https://yaskovdev.com/2017/10/30/utc-a-time-standard-or-a-time-zone/" target="_blank" rel="noopener">
+        <span class="yr">2017</span><span class="ttl">UTC: a Time Standard or a Time Zone?</span><span class="arrow">↗</span>
+      </a>
+    </div>
+    <a class="more" href="https://yaskovdev.com" target="_blank" rel="noopener">More on the blog →</a>
+
+    <footer>
+      <span>Plain HTML &amp; CSS · hosted on Azure Static Web Apps</span>
+      <span>© 2026 Sergey Yaskov · <a href="https://github.com/yaskovdev" target="_blank" rel="noopener">@yaskovdev</a></span>
+    </footer>
+  </main>
+  <script>(function(){var r=document.documentElement,b=document.getElementById('themeBtn');function eff(){return r.getAttribute('data-theme')||'light';}function icon(){b.textContent=eff()==='dark'?'\u2600':'\u263E';}icon();b.addEventListener('click',function(){var n=eff()==='dark'?'light':'dark';r.setAttribute('data-theme',n);try{localStorage.setItem('theme',n);}catch(e){}icon();});})();</script>
+</body>
+</html>
