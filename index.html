@@ -5,13 +5,13 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' data:; style-src 'unsafe-inline'; script-src 'sha256-LKS5qxivkW6MDP7mTwHb2zoVxki3/Jq42HU8Td64Drc=' 'sha256-kEVdzLxCPchCd7WnF8klb21KMMPYl6yym/Pt56e/I1k='; base-uri 'none'" />
   <title>Sergey Yaskov — Things I've Built</title>
-  <meta name="description" content="A small constellation of pet projects by Sergey Yaskov: a Haskell word game, a goal tracker, a URL shortener, a Stationeers mod, and more." />
+  <meta name="description" content="A small constellation of pet projects by Sergey Yaskov: a Haskell word game, a goal tracker, a URL shortener, a Stationeers mod, a media demuxer, and more." />
 
   <!-- Open Graph / nice link previews when shared -->
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://yaskov.dev/" />
   <meta property="og:title" content="Sergey Yaskov — Things I've Built" />
-  <meta property="og:description" content="A small constellation of pet projects: a Haskell word game, a goal tracker, a URL shortener, a Stationeers mod, and more." />
+  <meta property="og:description" content="A small constellation of pet projects: a Haskell word game, a goal tracker, a URL shortener, a Stationeers mod, a media demuxer, and more." />
   <meta name="twitter:card" content="summary" />
 
   <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 16 16%22><text x=%221%22 y=%2214%22 font-size=%2214%22>🔗</text></svg>" />
@@ -102,6 +102,16 @@
         <div class="actions">
           <a class="btn primary" href="https://milestone.yaskovdev.com" target="_blank" rel="noopener">Open ↗</a>
           <a class="btn ghost" href="https://github.com/motivepick/motive-web-app" target="_blank" rel="noopener">Code</a>
+        </div>
+      </article>
+
+      <article class="card">
+        <h2><span class="ico">🎞️</span> Demuxer</h2>
+        <p>A .NET library that demuxes a media stream (say, a browser MediaRecorder WebM) into raw video and audio frames. It wraps a native FFmpeg core in a tidy push API — write bytes, read frames — with the background reader thread and buffering tucked away inside.</p>
+        <div class="badges"><span class="badge">C#</span><span class="badge">C++</span><span class="badge">FFmpeg</span></div>
+        <div class="actions">
+          <a class="btn primary" href="https://github.com/yaskovdev/Demuxer" target="_blank" rel="noopener">Code ↗</a>
+          <a class="btn ghost" href="https://github.com/yaskovdev/Demuxer#use-it-as-a-library" target="_blank" rel="noopener">API</a>
         </div>
       </article>
 
